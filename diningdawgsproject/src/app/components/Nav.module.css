@@ -1,0 +1,13 @@
+/* Component 1 */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1rem;
+}
+
+.nav h1 {
+    font-size: 1.5rem;
+    color: black;
+}
