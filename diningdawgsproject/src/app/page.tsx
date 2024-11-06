@@ -17,7 +17,7 @@ export default function Home() {
         <button className="p-20 text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500"><h2>Village Summit</h2></button>
         <button className="p-20 text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500"><h2>Oglethorpe</h2></button>
         <button className="p-20 text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500"><h2>Snelling</h2></button>
-        <button className="p-20 text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500"><h2>The Niche</h2></button>>
+        <button className="p-20 text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500"><h2>The Niche</h2></button>
       </div>
     </div>
   );
