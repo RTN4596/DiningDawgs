@@ -1,5 +1,5 @@
 import styles from './Nav.module.css';
-import SignupButton from './SignupButton';
+import SignupButton from './SignInButton';
 
 export default function Nav() { 
     return (

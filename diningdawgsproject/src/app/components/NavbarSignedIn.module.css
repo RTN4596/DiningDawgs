@@ -14,3 +14,10 @@
     color: black;
     -webkit-text-stroke: 1px red;
 }
+
+.div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
