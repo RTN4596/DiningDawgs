@@ -69,33 +69,30 @@ export default function Page() {
 
     return (
         <div>
-            <NavbarSignedIn />
+        <NavbarSignedIn />
+        <div className="flex h-screen">
+            <div className="flex-grow p-4 relative">
+            
             <BackButton />
-            <div className="relative w-full h-64 mb-4">
-            <Image
-                src={imageSrc}
-                alt={`${diningHall} image`}
-                layout="fill"
-                objectFit="cover"
-            />
-            </div>
-            <Image className="ml-40"
-                src="/diningdawgslogo.png"
-                alt="The logo for Dining Dawgs"
-                 width={300}
-                height={300}
-            />
-            <div className="left-0 bottom-10 flex flex-col py-4 ml-4 h-10">
-            <form className="ml-1 py-4 w-1/2" onSubmit={handleSubmit}>
-                <label className="text-white" htmlFor="title">Title</label>
-                    <input className="w-full h-10 p-2 block border-4 border-red-700 rounded-md text-base mb-4"
+                <div className="absolute top-0 right-0">
+                <Image className="ml-40 w-1/2 h-auto"
+                    src="/diningdawgslogo.png"
+                    alt="The logo for Dining Dawgs"
+                    width={400}
+                    height={400}
+                />
+                </div>
+      
+            <form className="ml-1 py-4 w-3/4 mt-64" onSubmit={handleSubmit}>
+                <label className="text-white text-xl" htmlFor="title">Title</label>
+                    <input className="w-3/4 h-10 p-2 block border-4 border-red-700 rounded-md text-base mb-4"
                         id="title"
                         type="text"
                         placeholder="Enter the title of your review"
                         value={title}
                         onChange={titleChangeHandler}
                     />
-                <label className="text-white" htmlFor="feedback">Feedback</label>
+                <label className="text-white text-xl" htmlFor="feedback">Feedback</label>
                     <textarea className="w-full h-24 p-2 block border-4 border-red-700 rounded-md text-base"
                         id="feedback"
                         placeholder="Leave your comments here"
@@ -118,9 +115,18 @@ export default function Page() {
                     </div>
                     <button type="button" className={buttonstyles.button} onClick={handleSubmit}>Submit Review</button>
             </form>
-            
+            </div>
+            <div className="relative w-1/4 max-h-screen m-6">
+            <Image
+                src={imageSrc}
+                alt={`${diningHall} image`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+            />
             </div>
             
+        </div>
         </div>
     );
 }
