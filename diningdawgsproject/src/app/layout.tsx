@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Dinging Dawgs Reviews",
+  title: "Dining Dawgs Reviews",
   description: "A review site for UGA dining halls",
 };
 
