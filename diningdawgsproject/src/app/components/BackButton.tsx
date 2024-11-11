@@ -7,7 +7,7 @@ export default function BackButton() {
 
     // Handler that uses the router to route back to the home page on click of the button
     const goHome = () => {
-        router.push('/')
+        router.push('/authorized')
     }
 
     return (
