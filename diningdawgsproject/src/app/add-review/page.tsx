@@ -11,6 +11,7 @@ type Review = {
     title: string;
     feedback: string;
     rating: number;
+    image: string;
 }
 
 type DiningHallData = {
@@ -34,6 +35,7 @@ export default function Page() {
     const [title, setTitle] = useState('');
     const [feedback, setFeedback] = useState('');
     const [rating, setRating] = useState(0);
+    const [image, setImage] = useState('');
     const router = useRouter();
     const searchParams = useSearchParams();
     const diningHall = searchParams.get("diningHall") || "default";
@@ -51,6 +53,10 @@ export default function Page() {
         setRating(value)
     }
 
+    const imageChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setImage(event.target.value)
+    }
+
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
@@ -58,6 +64,7 @@ export default function Page() {
             title,
             feedback,
             rating,
+            image,
         }));
 
         setTitle('');
@@ -113,6 +120,24 @@ export default function Page() {
                             </span>
                         ))}
                     </div>
+                    <label className="text-white mt-4 block" htmlFor="image">Upload Image</label>
+                    <input
+                        className="w-full p-2 block border-4 border-red-700 rounded-md text-base mb-4 bg-white"
+                        id="image"
+                        type="file"
+                        accept="image/*"
+                        onChange={(event) => {
+                            const file = event.target.files?.[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                    setImage(reader.result as string);
+                                    imageChangeHandler(event);
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                        }}
+                    />
                     <button type="button" className={buttonstyles.button} onClick={handleSubmit}>Submit Review</button>
             </form>
             </div>
