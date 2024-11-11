@@ -64,7 +64,7 @@ export default function Page() {
         setFeedback('');
         setRating(0);
 
-        router.push('/');
+        router.push('/authorized');
     };
 
     return (

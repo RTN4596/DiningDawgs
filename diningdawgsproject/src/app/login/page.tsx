@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../components/Login.module.css';
 
@@ -8,7 +8,8 @@ const LoginPage = () => {
   const [isLogged, setIsLogged] = useState(false);
     const router = useRouter();
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
         setIsLogged(true);
         router.push('/authorized');
     }
