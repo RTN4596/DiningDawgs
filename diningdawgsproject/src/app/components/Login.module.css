@@ -40,6 +40,7 @@
     font-size: 1.15em;
     text-align: center;
     -webkit-text-stroke: 0.25px red;
+    color: white;
 }
 
 .label {

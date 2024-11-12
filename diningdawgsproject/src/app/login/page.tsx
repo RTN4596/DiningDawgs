@@ -3,23 +3,29 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../components/Login.module.css';
+import Link from 'next/link';
 
 const LoginPage = () => {
-  const [isLogged, setIsLogged] = useState(false);
-    const router = useRouter();
 
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        setIsLogged(true);
-        router.push('/authorized');
-    }
+    // FOR LATER
+//   const [isLogged, setIsLogged] = useState(false);
+//     const router = useRouter();
+
+    // FOR LATER
+    //const handleSubmit = (event: FormEvent) => {
+    //     event.preventDefault();
+    //     setIsLogged(true);
+    //     router.push('/authorized');
+    // }
     return (
         <div>
             <h1 className={styles.h1}>Login</h1>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.form}>
                 <input type="text" className={styles.input} placeholder="Username" />
                 <input type="password" className={styles.input} placeholder="Password" />
-                <button type="submit" className={styles.button}>Submit</button>
+                <Link href="/authorized">
+                    <button type="submit" className={styles.button}>Submit</button>
+                </Link>
             </form>
             <p className={styles.signUp}>
                 Don't have an account? <a href="/signup">Sign up</a>
