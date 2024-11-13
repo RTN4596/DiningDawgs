@@ -11,6 +11,7 @@ export default function BackButton() {
     }
 
     return (
+        
         <div>
             <button onClick={goHome} className={styles.button}>Go back</button>
         </div>
