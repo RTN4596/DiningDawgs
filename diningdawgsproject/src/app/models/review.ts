@@ -3,7 +3,7 @@ import mongoose, {Schema, Document, Model} from "mongoose";
 interface Review extends Document {
     title: string;
     dining_hall: string;
-    food: string;
+    food_name: string;
     description?: string;
     rating: number;
     image?: string;
@@ -23,7 +23,7 @@ const ReviewSchema = new Schema<Review>({
         type: String,
         required: true
     },
-    food: {
+    food_name: {
         type: String,
         required: true
     },
