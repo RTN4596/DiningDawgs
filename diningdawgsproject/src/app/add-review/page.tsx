@@ -12,6 +12,7 @@ type Review = {
     feedback: string;
     rating: number;
     image: string;
+    diningHall: string;
 }
 
 type DiningHallData = {
@@ -65,6 +66,7 @@ export default function Page() {
             feedback,
             rating,
             image,
+            diningHall
         }));
 
         setTitle('');
@@ -150,7 +152,7 @@ export default function Page() {
                 className="rounded-lg"
             />
             </div>
-            
+
         </div>
         </div>
     );
