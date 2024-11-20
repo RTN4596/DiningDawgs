@@ -3,15 +3,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: grey;
     padding: 1rem;
-    border-radius: 15px;
 }
 
 .nav h1 {
     display: inline;
     font-size: 2rem;
-    color: black;
+    color: white;
     -webkit-text-stroke: 1px red;
 }
 
