@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../components/Signu.module.css';
+import styles from '../components/Signup.module.css';
 import Link from 'next/link';
 
 const SignupPage = () => {
