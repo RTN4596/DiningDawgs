@@ -17,7 +17,7 @@ const SignupPage = () => {
                 <input type="password" className={styles.input} placeholder="Email" />
                 <input type="password" className={styles.input} placeholder="Password" />
                 <Link href="/authorized">
-                    <button type="submit" className={styles.button}>SIGN UP</button>
+                    <button type="submit" className={styles.button}>Sign Up</button>
                 </Link>
             </form>
         </div>
