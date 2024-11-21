@@ -14,6 +14,7 @@ export default function MenuItemButton() {
     const handleClick = () => {
         console.log(diningHall);
         console.log('/add-review?diningHall=' + diningHall);
+        
         router.push('/add-review?diningHall=' + diningHall);
 
     };
