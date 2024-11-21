@@ -46,7 +46,7 @@ export default function Home() {
         </Link>
       </div>
       <Link href='/menu-items?diningHall=niche' 
-        className="relative flex justify-center items-center w-full h-full p-20 mt-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        className="relative flex justify-center items-center w-full h-full p-20 mt-4 mb-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
         >
           <h2 className="z-10 text-center">The Niche</h2>
           <div className="absolute inset-0 bg-[url('/niche.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
