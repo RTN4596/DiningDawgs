@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import NavbarSignedIn from "./components/NavbarSignedIn";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -17,50 +18,39 @@ export default function Home() {
       <div>
       <Nav />
       <h1 className="text-center text-5xl mt-6">Dining Halls</h1>
-      <div className="grid grid-cols-2 gap-4 mt-6">
-        <div className="relative group">
-          <button className="relative p-20 w-full text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500 overflow-hidden" onClick={handleLoginRedirect}><h2 className="relative z-10">Bolton</h2></button>
-          <img
-            src="/bolton.jpg"
-            alt="Bolton"
-            className="absolute inset-0 w-full h-full m-4 object-cover opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded"
-          />
-        </div>
-        <div className="relative group">
-          <button className="relative p-20 w-full text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500 overflow-hidden" onClick={handleLoginRedirect}><h2 className="relative z-10">Village Summit</h2></button>
-          <img
-            src="/villagesummit.jpg"
-            alt="Bolton"
-            className="absolute inset-0 w-full h-full m-4 object-cover opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded"
-          />
-        </div>
-        <div className="relative group">
-          <button className="relative p-20 w-full text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500 overflow-hidden" onClick={handleLoginRedirect}><h2 className="relative z-10">Oglethorpe</h2></button>
-          <img
-            src="/ohouse.jpg"
-            alt="Bolton"
-            className="absolute inset-0 w-full h-full m-4 object-cover opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded"
-          />
-        </div>
-        <div className="relative group">
-          <button className="relative p-20 w-full text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500 overflow-hidden" onClick={handleLoginRedirect}><h2 className="relative z-10">Snelling</h2></button>
-          <img
-            src="/snelling.jpg"
-            alt="Bolton"
-            className="absolute inset-0 w-full h-full m-4 object-cover opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded"
-          />
-        </div>
+      <div className="grid grid-cols-2 gap-4 place-items-center mt-6">
+        <Link
+          href='/menu-items?diningHall=bolton'
+          className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Bolton</h2>
+          <div className="absolute inset-0 bg-[url('/bolton.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
+        <Link href='/menu-items?diningHall=villagesummit' 
+        className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Village Summit</h2>
+          <div className="absolute inset-0 bg-[url('/villagesummit.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
+        <Link href='/menu-items?diningHall=oglethorpe' 
+        className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Ogelthorpe</h2>
+          <div className="absolute inset-0 bg-[url('/ohouse.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
+        <Link href='/menu-items?diningHall=snelling' 
+        className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Snelling</h2>
+          <div className="absolute inset-0 bg-[url('/snelling.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
       </div>
-      <div className="relative group">
-        <div className="text-center">
-          <button className="p-20 px-60 text-black bg-white rounded text-4xl m-4 shadow-lg shadow-red-500 overflow-hidden" onClick={handleLoginRedirect}><h2 className="relative z-10">The Niche</h2></button>
-          <img
-            src="/niche.jpg"
-            alt="Niche"
-            className="absolute px-60 inset-0 w-full h-full m-4 object-cover opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded"
-          />
-        </div>
-      </div>
+      <Link href='/menu-items?diningHall=niche' 
+        className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">The Niche</h2>
+          <div className="absolute inset-0 bg-[url('/niche.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
     </div>
     );
 }
