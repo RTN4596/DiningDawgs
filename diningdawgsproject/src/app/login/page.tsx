@@ -3,6 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../components/Login.module.css';
+import BackButton from "../components/BackButton";
 import Link from 'next/link';
 
 const LoginPage = () => {
@@ -19,6 +20,7 @@ const LoginPage = () => {
     // }
     return (
         <div>
+            <BackButton />
             <h1 className={styles.h1}>Login</h1>
             <form className={styles.form}>
                 <input type="text" className={styles.input} placeholder="Username" />
