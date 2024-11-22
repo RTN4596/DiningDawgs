@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./Card.module.css";
-import MenuItemButton from './MenuItemButton';
-import style from './Button.module.css';
+import MenuItemButton from './MenuItemButton'; 
+import ViewReviewsButton from './ViewReviewsButton';
 
 interface CardProps {
     title: string;
@@ -15,9 +15,9 @@ const Card: React.FC<CardProps> = ({title, image}) => {
         <div className={styles.Card}>
             <h3 className="card-title">{title}</h3>
             <img src={image} alt="" className="card-image" style={{ width: '200px', height: '200px' }} />
-        <div className='flex flex-col'>
+        <div className='flex flex-col space-y-12'>
             <MenuItemButton />
-            <button>View Reviews</button>
+            <ViewReviewsButton menuItem={title}/>
         </div>
         </div>
         </div>
