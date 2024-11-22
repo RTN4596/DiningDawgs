@@ -19,7 +19,7 @@ export default function MenuItemsPage() {
             { id: 3, name: "Default Item 3", image: "/default-item-3.jpg" },
         ],
         bolton: [
-            { id: 1, name: "Bolton Item 1", image: "/diningdawgslogo.png" },
+            { id: 1, name: "chicken", image: "/diningdawgslogo.png" },
             { id: 2, name: "Bolton Item 2", image: "/bolton-item-2.jpg" },
             { id: 3, name: "Bolton Item 3", image: "/bolton-item-3.jpg" },
         ],
