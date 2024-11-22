@@ -12,6 +12,7 @@ type Review = {
     feedback: string;
     rating: number;
     image: string;
+    diningHall: string;
 }
 
 type DiningHallData = {
@@ -65,6 +66,7 @@ export default function Page() {
             feedback,
             rating,
             image,
+            diningHall
         }));
 
         setTitle('');
@@ -77,10 +79,11 @@ export default function Page() {
     return (
         <div>
         <NavbarSignedIn />
+        <BackButton />
         <div className="flex h-screen">
-            <div className="flex-grow p-4 relative">
+            <div className="flex-grow p-4 relative pt-6">
             
-            <BackButton />
+            
                 <div className="absolute top-0 right-0">
                 <Image className="ml-40 w-1/2 h-auto"
                     src="/diningdawgslogo.png"
@@ -91,7 +94,7 @@ export default function Page() {
                 </div>
       
             <form className="ml-1 py-4 w-3/4 mt-64" onSubmit={handleSubmit}>
-                <label className="text-white text-xl" htmlFor="title">Title</label>
+                <label className="text-black text-xl" htmlFor="title">Title</label>
                     <input className="w-3/4 h-10 p-2 block border-4 border-red-700 rounded-md text-base mb-4"
                         id="title"
                         type="text"
@@ -99,14 +102,14 @@ export default function Page() {
                         value={title}
                         onChange={titleChangeHandler}
                     />
-                <label className="text-white text-xl" htmlFor="feedback">Feedback</label>
+                <label className="text-black text-xl" htmlFor="feedback">Feedback</label>
                     <textarea className="w-full h-24 p-2 block border-4 border-red-700 rounded-md text-base"
                         id="feedback"
                         placeholder="Leave your comments here"
                         value={feedback}
                         onChange={feedbackChangeHandler}
                     />
-                <label className="text-white mt-4 block">Rating</label>
+                <label className="text-black mt-4 block">Rating</label>
                     <div className="flex space-x-2">
                         {[1, 2, 3, 4, 5].map((star) => (
                             <span
@@ -120,7 +123,7 @@ export default function Page() {
                             </span>
                         ))}
                     </div>
-                    <label className="text-white mt-4 block" htmlFor="image">Upload Image</label>
+                    <label className="text-black mt-4 block" htmlFor="image">Upload Image</label>
                     <input
                         className="w-full p-2 block border-4 border-red-700 rounded-md text-base mb-4 bg-white"
                         id="image"
@@ -150,7 +153,7 @@ export default function Page() {
                 className="rounded-lg"
             />
             </div>
-            
+
         </div>
         </div>
     );
