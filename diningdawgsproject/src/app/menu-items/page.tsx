@@ -51,10 +51,8 @@ export default function MenuItemsPage() {
     return (     
         <div>
             <NavbarSignedIn />
-            <div className='flex items-center justify-between mt-6'>
-                <div className='ml-4'>
-                    <BackButton />
-                </div>
+                <BackButton />
+                <div className='flex items-center justify-between mt-6'>
                 <h1 className="text-5xl mx-auto">Menu Items</h1>
                 <div style={{ width: '150px' }}></div> {/* Placeholder to balance the flex layout */}
             </div>

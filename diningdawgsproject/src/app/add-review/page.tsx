@@ -79,10 +79,11 @@ export default function Page() {
     return (
         <div>
         <NavbarSignedIn />
+        <BackButton />
         <div className="flex h-screen">
             <div className="flex-grow p-4 relative pt-6">
             
-            <BackButton />
+            
                 <div className="absolute top-0 right-0">
                 <Image className="ml-40 w-1/2 h-auto"
                     src="/diningdawgslogo.png"
