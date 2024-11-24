@@ -85,7 +85,7 @@ export default function Page() {
             
             
                 <div className="absolute top-0 right-0">
-                <Image className="ml-40 w-1/2 h-auto"
+                <Image className="ml-40 w-1/2 h-auto drop-shadow-[0_4px_6px_rgba(255,255,255,0.6)]"
                     src="/diningdawgslogo.png"
                     alt="The logo for Dining Dawgs"
                     width={400}
@@ -145,12 +145,13 @@ export default function Page() {
             </form>
             </div>
             <div className="relative w-1/4 max-h-screen m-6">
+            <div className="absolute inset-0 -z-10 bg-white rounded-xl shadow-lg scale-105 translate-y-2"></div>
             <Image
                 src={imageSrc}
                 alt={`${diningHall} image`}
                 layout="fill"
                 objectFit="cover"
-                className="rounded-lg"
+                className="rounded-lg translate-y-2"
             />
             </div>
 

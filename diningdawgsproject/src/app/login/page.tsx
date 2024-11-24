@@ -3,22 +3,14 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../components/Login.module.css';
+import BackButton from "../components/BackButton";
 import Link from 'next/link';
 
 const LoginPage = () => {
 
-    // FOR LATER
-//   const [isLogged, setIsLogged] = useState(false);
-//     const router = useRouter();
-
-    // FOR LATER
-    //const handleSubmit = (event: FormEvent) => {
-    //     event.preventDefault();
-    //     setIsLogged(true);
-    //     router.push('/authorized');
-    // }
     return (
         <div>
+            <BackButton />
             <h1 className={styles.h1}>Login</h1>
             <form className={styles.form}>
                 <input type="text" className={styles.input} placeholder="Username" />
@@ -28,7 +20,7 @@ const LoginPage = () => {
                 </Link>
             </form>
             <p className={styles.signUp}>
-                Don't have an account? <a href="/signup">Sign up</a>
+                <a href="/signup">Don't have an account? Sign up</a>
             </p>
         </div>
     )

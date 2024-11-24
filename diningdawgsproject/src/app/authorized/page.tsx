@@ -11,13 +11,39 @@ export default function Home() {
         <div>
           <NavbarSignedIn />
           <h1 className="text-center text-5xl mt-6">Dining Halls</h1>
-          <div className="grid grid-cols-2 gap-4 mt-6">
-            <Link href='/menu-items?diningHall=bolton' className="p-20 text-black bg-white border-2 border-black rounded text-4xl m-4 shadow-lg shadow-red-500"><h2 className="text-center">Bolton</h2></Link>
-            <Link href='/menu-items?diningHall=villagesummit' className="p-20 text-black bg-white border-2 border-black rounded text-4xl m-4 shadow-lg shadow-red-500"><h2 className="text-center">Village Summit</h2></Link>
-            <Link href='/menu-items?diningHall=oglethorpe' className="p-20 text-black bg-white border-2 border-black rounded text-4xl m-4 shadow-lg shadow-red-500"><h2 className="text-center">Oglethorpe</h2></Link>
-            <Link href='/menu-items?diningHall=snelling' className="p-20 text-black bg-white border-2 border-black rounded text-4xl m-4 shadow-lg shadow-red-500"><h2 className="text-center">Snelling</h2></Link>
-            <Link href='/menu-items?diningHall=niche' className="p-20 text-black bg-white border-2 border-black rounded text-4xl m-4 shadow-lg shadow-red-500"><h2 className="text-center">The Niche</h2></Link>
-          </div>
+          <div className="grid grid-cols-2 gap-4 place-items-center mt-6">
+        <Link
+          href='/menu-items?diningHall=bolton'
+          className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Bolton</h2>
+          <div className="absolute inset-0 bg-[url('/bolton.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
+        <Link href='/menu-items?diningHall=villagesummit' 
+        className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Village Summit</h2>
+          <div className="absolute inset-0 bg-[url('/villagesummit.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
+        <Link href='/menu-items?diningHall=oglethorpe' 
+        className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Ogelthorpe</h2>
+          <div className="absolute inset-0 bg-[url('/ohouse.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
+        <Link href='/menu-items?diningHall=snelling' 
+        className="relative flex justify-center items-center w-full h-full p-20 m-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">Snelling</h2>
+          <div className="absolute inset-0 bg-[url('/snelling.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
+      </div>
+      <Link href='/menu-items?diningHall=niche' 
+        className="relative flex justify-center items-center w-full h-full p-20 mt-4 mb-4 text-black bg-white rounded text-4xl shadow-lg shadow-red-500 overflow-hidden group"
+        >
+          <h2 className="z-10 text-center">The Niche</h2>
+          <div className="absolute inset-0 bg-[url('/niche.jpg')] bg-cover bg-center opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+        </Link>
         </div>
     );
 }
