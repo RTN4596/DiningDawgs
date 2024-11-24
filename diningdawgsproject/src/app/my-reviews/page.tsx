@@ -17,7 +17,7 @@ interface Review {
     dining_hall: string
 }
 
-export default async function Home() {
+export default function Home() {
     const { data: session } = useSession();
     const [reviews, setReviews] = useState<Review[]>([]);
 
@@ -39,7 +39,7 @@ export default async function Home() {
         <div>
             <NavbarSignedIn />
             <BackButton />
-            <h1 className="text-center text-5xl mt-6">Your Reviews</h1>
+            <h1 className="text-center text-5xl mt-6">Reviews for {session?.user?.name || "User"}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 justify-items-center">
             {reviews.map((review) => (
                 <div key={review.id} className="bg-gray-300 mt-5 w-80 p-4 shadow-lg shadow-red-500">
