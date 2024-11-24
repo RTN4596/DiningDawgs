@@ -2,11 +2,8 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { doCredentialLogin, doLogout } from '../components/Login';
 import styles from '../components/Login.module.css';
 import BackButton from "../components/BackButton";
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 import { signIn } from 'next-auth/react';
 
 
@@ -29,7 +26,7 @@ const LoginPage = () => {
         console.log(result);
 
         if (result?.error) {
-            console.log('Invalid username or password');
+            alert('Invalid username or password');
         } else {
             console.log('Logged in');
             router.push('/authorized');
