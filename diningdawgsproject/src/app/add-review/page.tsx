@@ -5,11 +5,12 @@ import NavbarSignedIn from "../components/NavbarSignedIn";
 import BackButton from "../components/BackButton";
 import buttonstyles from "../components/Button.module.css";
 import Image from "next/image";
+import axios from "axios";
 
 // May need this later but doesn't do anything right now
 type Review = {
     title: string;
-    feedback: string;
+    description: string;
     rating: number;
     image: string;
     diningHall: string;
@@ -34,20 +35,23 @@ const diningHallImages: DiningHallData = {
 
 export default function Page() {
     const [title, setTitle] = useState('');
-    const [feedback, setFeedback] = useState('');
+    const [description, setdescription] = useState('');
     const [rating, setRating] = useState(0);
     const [image, setImage] = useState('');
     const router = useRouter();
     const searchParams = useSearchParams();
     const diningHall = searchParams.get("diningHall") || "default";
+    const food_name = searchParams.get("menuItemId");
     const imageSrc = diningHallImages[diningHall as keyof DiningHallData];
+
+    console.log(food_name); 
 
     const titleChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value)
     }
 
-    const feedbackChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setFeedback(event.target.value)
+    const descriptionChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setdescription(event.target.value)
     }
 
     const starChangeHandler = (value: number) => {
@@ -58,19 +62,38 @@ export default function Page() {
         setImage(event.target.value)
     }
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
         console.log(JSON.stringify({
             title,
-            feedback,
+            description,
             rating,
             image,
             diningHall
         }));
 
+        try {
+            const response = await fetch(`/api/${diningHall}/${food_name}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, description, food_name, diningHall, rating }),
+            });
+
+            if (response.ok) {
+                console.log('Review submitted successfully!');
+            } else {
+                const data = await response.json();
+                console.log(data.message || 'Something went wrong. Please try again.');
+            }
+        } catch (err) {
+            console.log('Failed to connect to the server. Please try again later.');
+        }
+
         setTitle('');
-        setFeedback('');
+        setdescription('');
         setRating(0);
 
         router.push('/authorized');
@@ -102,12 +125,12 @@ export default function Page() {
                         value={title}
                         onChange={titleChangeHandler}
                     />
-                <label className="text-white text-xl" htmlFor="feedback">Feedback</label>
+                <label className="text-white text-xl" htmlFor="description">Description</label>
                     <textarea className="w-full h-24 p-2 block border-4 border-red-700 rounded-md text-base"
-                        id="feedback"
+                        id="description"
                         placeholder="Leave your comments here"
-                        value={feedback}
-                        onChange={feedbackChangeHandler}
+                        value={description}
+                        onChange={descriptionChangeHandler}
                     />
                 <label className="text-white mt-4 block">Rating</label>
                     <div className="flex space-x-2">

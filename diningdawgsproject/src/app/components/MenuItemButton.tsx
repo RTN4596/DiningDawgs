@@ -3,8 +3,11 @@ import { useRouter } from 'next/navigation';
 import styles from './button.module.css';
 import { useSearchParams } from 'next/navigation';
 
+interface MenuItemButtonProps {
+    menuItem: string;
+}
 
-export default function MenuItemButton() {
+export default function MenuItemButton({ menuItem }: MenuItemButtonProps) {
     const router = useRouter();
 
     
@@ -13,9 +16,9 @@ export default function MenuItemButton() {
 
     const handleClick = () => {
         console.log(diningHall);
-        console.log('/add-review?diningHall=' + diningHall);
+
         
-        router.push('/add-review?diningHall=' + diningHall);
+        router.push(`/add-review?diningHall=${diningHall}&menuItemId=${menuItem}`);
 
     };
 

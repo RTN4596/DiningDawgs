@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({title, image}) => {
             <h3 className="text-4xl flex items-center justify-center">{title}</h3>
             <img src={image} alt="" className="card-image" style={{ width: '200px', height: '200px' }} />
         <div className='flex flex-col space-y-12'>
-            <MenuItemButton />
+            <MenuItemButton menuItem={title} />
             <ViewReviewsButton menuItem={title}/>
         </div>
         </div>

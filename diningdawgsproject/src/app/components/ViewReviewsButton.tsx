@@ -14,7 +14,6 @@ export default function ViewReviewsButton({ menuItem }: MenuItemButtonProps) {
 
     const handleClick = () => {
         console.log(diningHall);
-        console.log('/view-reviews');
         
         router.push('/view-reviews' + `?diningHall=${diningHall}&menuItemId=${menuItem}`);
     };
