@@ -20,7 +20,7 @@ export async function middleware(request: any) {
 export const config = {
     matcher: [
         "/add-review/",
-        "my-reviews/",
+        "/my-reviews/",
         
     ]
 };
