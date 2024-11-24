@@ -10,7 +10,13 @@ export default function Home() {
     return (
         <div>
           <NavbarSignedIn />
+          <div className="flex flex-col items-center justify-center h-20">
+        <div className="flex items-center gap-2">
+          <img src="/fork.png" className="w-20 h-auto drop-shadow-[0_4px_6px_rgba(255,255,255,0.6)] translate-y-2" alt="Fork" />
           <h1 className="text-center text-5xl mt-6">Dining Halls</h1>
+          <img src="/fork.png" className="w-20 h-auto transform scale-x-[-1] drop-shadow-[0_4px_6px_rgba(255,255,255,0.6)] translate-y-2" alt="Mirrored Fork" />
+        </div>
+      </div>
           <div className="grid grid-cols-2 gap-4 place-items-center mt-6">
         <Link
           href='/menu-items?diningHall=bolton'

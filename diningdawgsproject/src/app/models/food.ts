@@ -11,6 +11,7 @@ const FoodSchema: Schema = new Schema({
     required: true,
     unique: true,
   },
+
   dining_hall: {
     type: String,
     required: true,

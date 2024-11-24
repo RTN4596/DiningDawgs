@@ -27,6 +27,10 @@ const ReviewSchema = new Schema<Review>({
         type: String,
         required: true
     },
+    rating: {
+        type: Number,
+        required: true
+    },
     image: {
         type: String
     },
@@ -36,5 +40,10 @@ const ReviewSchema = new Schema<Review>({
     }
 })
 
+if (mongoose.models.Review) {
+    delete mongoose.models.Review;
+}
+
 const Review: Model<Review> = mongoose.models.Item || mongoose.model<Review>("Review", ReviewSchema);
+
 export default Review;
