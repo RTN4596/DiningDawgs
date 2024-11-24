@@ -3,37 +3,41 @@
 import Image from "next/image";
 import NavbarSignedIn from "../components/NavbarSignedIn";
 import BackButton from "../components/BackButton";
-import { useState } from "react";
+import connectMongoDB from "../libs/mongodb"
+import User from "@/app/models/user";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import bcrypt from "bcryptjs"
+import axios from "axios";
 
-export default function Home() {
+interface Review {
+    id: number;
+    title: string;
+    food_name: string;
+    rating: number;
+    description: string;
+    imageLink: string;
+    dining_hall: string
+}
 
-    const reviews = [
-        {
-            id: 1,
-            imageLink: "/burger.jpg",
-            title: "Best Burger Ever",
-            feedback: "Burger was cooked just right and tasted amazing!",
-            rating: 5,
-            DiningHall: "Bolton"
-        },
-        {
-            id: 2,
-            imageLink: "/scrambledeggs.jpg",
-            title: "Solid Scrambled Eggs!",
-            feedback: "Eggs were soft and fluffy.",
-            rating: 4,
-            DiningHall: "Village Summit"
-        },
-        {
-            id: 3,
-            imageLink: "/pasta.jpg",
-            title: "Disappointing Pasta",
-            feedback: "Pasta was very wet. Not to my liking.",
-            rating: 2,
-            DiningHall: "Oglethorpe"
-        },
-    ];
+export default async function Home() {
+    const { data: session } = useSession();
+    const [reviews, setReviews] = useState<Review[]>([]);
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            if (session?.user?.id) {
+                try {
+                    const response = await axios.get(`/api/food/reviews/user/${session.user.id}`);
+                    setReviews(response.data);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        };
+        fetchReviews();
+    }, [session]);
 
     return (
         <div>
@@ -45,8 +49,8 @@ export default function Home() {
                 <div key={review.id} className="bg-gray-300 mt-5 w-80 p-4 shadow-lg shadow-red-500">
                 <Image src={review.imageLink} alt="Picture of related food item" width={100} height={100} />
                 <h3>{review.title} {review.rating} / 5</h3>
-                <p>{review.feedback}</p>
-                <p>Dining Hall: {review.DiningHall}</p>
+                <p>{review.description}</p>
+                <p>Dining Hall: {review.dining_hall}</p>
                 </div>
             ))}
             </div>
