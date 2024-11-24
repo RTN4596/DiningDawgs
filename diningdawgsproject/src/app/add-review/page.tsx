@@ -12,6 +12,7 @@ type Review = {
     feedback: string;
     rating: number;
     image: string;
+    diningHall: string;
 }
 
 type DiningHallData = {
@@ -65,6 +66,7 @@ export default function Page() {
             feedback,
             rating,
             image,
+            diningHall
         }));
 
         setTitle('');
@@ -77,10 +79,11 @@ export default function Page() {
     return (
         <div>
         <NavbarSignedIn />
+        <BackButton />
         <div className="flex h-screen">
-            <div className="flex-grow p-4 relative">
+            <div className="flex-grow p-4 relative pt-6">
             
-            <BackButton />
+            
                 <div className="absolute top-0 right-0">
                 <Image className="ml-40 w-1/2 h-auto drop-shadow-[0_4px_6px_rgba(255,255,255,0.6)]"
                     src="/diningdawgslogo.png"
@@ -151,7 +154,7 @@ export default function Page() {
                 className="rounded-lg translate-y-2"
             />
             </div>
-            
+
         </div>
         </div>
     );
