@@ -3,12 +3,8 @@
 import Image from "next/image";
 import NavbarSignedIn from "../components/NavbarSignedIn";
 import BackButton from "../components/BackButton";
-import connectMongoDB from "../libs/mongodb"
-import User from "@/app/models/user";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import bcrypt from "bcryptjs"
 import axios from "axios";
 
 interface Review {

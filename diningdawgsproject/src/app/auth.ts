@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "./models/user";
+import connectMongoDB from "./libs/mongodb";
 
 export const {
     handlers: { GET, POST },
@@ -19,7 +20,7 @@ export const {
             },
             async authorize(credentials) {
                 if(!credentials) return null;
-
+                await connectMongoDB();
                 try {
                     const user = await User.findOne({ email: credentials.email }).lean();
 

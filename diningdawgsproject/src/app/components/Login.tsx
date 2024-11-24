@@ -7,14 +7,15 @@ export async function doLogout() {
 export async function doCredentialLogin(formData: FormData): Promise<any> {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-
+    console.log("IS THIS BEING CALLED");
     try {
-        const response = await signIn("credentials", {
+        console.log(await signIn("credentials", {
             email,
             password,
             redirect: false
-        });
-        return response;
+        }));
+        //console.log(response);
+        return "hi";
     } catch (err: any) {
         return err.response;
     }

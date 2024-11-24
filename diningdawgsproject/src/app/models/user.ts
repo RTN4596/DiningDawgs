@@ -1,5 +1,9 @@
-import mongoose, {Schema, Document, Model} from "mongoose";
+import {Schema, Document, Model} from "mongoose";
+import mongoose from "mongoose";
+import connectMongoDB from "../libs/mongodb";
 
+connectMongoDB()
+    .then(() => console.log('MongoDB connected:', mongoose.connection.readyState))
 
 export interface IUser extends Document {
     //user_id: string;
@@ -30,7 +34,7 @@ const UserSchema: Schema = new Schema({
     },
 });
 
-const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
+const User: Model<IUser> = mongoose.models?.User || mongoose.model<IUser>('User', UserSchema);
 
 console.log('User model:', User);
 

@@ -2,12 +2,17 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { doCredentialLogin } from '../components/Login';
+import { doCredentialLogin, doLogout } from '../components/Login';
 import styles from '../components/Login.module.css';
 import BackButton from "../components/BackButton";
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
+
+
 
 const LoginPage = () => {
+    console.log("COMES IN HERE")
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
@@ -15,14 +20,18 @@ const LoginPage = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('email', email);
-        formData.append('password', password);
+        const result = await signIn("credentials", {
+            redirect: false,
+            email,
+            password,
+          });
 
-        const response = await doCredentialLogin(formData);
-        if (response?.error) {
+        console.log(result);
+
+        if (result?.error) {
             console.log('Invalid username or password');
         } else {
+            console.log('Logged in');
             router.push('/authorized');
         }
     };

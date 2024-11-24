@@ -44,6 +44,6 @@ if (mongoose.models.Review) {
     delete mongoose.models.Review;
 }
 
-const Review: Model<Review> = mongoose.models.Item || mongoose.model<Review>("Review", ReviewSchema);
+const Review: Model<Review> = mongoose.models.Review || mongoose.model<Review>("Review", ReviewSchema);
 
 export default Review;

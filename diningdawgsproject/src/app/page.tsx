@@ -1,9 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import Nav from "./components/Nav"; 
-import NavbarSignedIn from "./components/NavbarSignedIn";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
