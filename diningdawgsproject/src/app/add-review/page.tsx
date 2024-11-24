@@ -1,6 +1,7 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { useSession } from "next-auth/react"
 import NavbarSignedIn from "../components/NavbarSignedIn";
 import BackButton from "../components/BackButton";
 import buttonstyles from "../components/Button.module.css";
@@ -34,11 +35,13 @@ const diningHallImages: DiningHallData = {
 
 
 export default function Page() {
+    const { data: session } = useSession();
     const [title, setTitle] = useState('');
     const [description, setdescription] = useState('');
     const [rating, setRating] = useState(0);
     const [image, setImage] = useState('');
     const router = useRouter();
+    const username = session?.user?.name;
     const searchParams = useSearchParams();
     const diningHall = searchParams.get("diningHall") || "default";
     const food_name = searchParams.get("menuItemId");
@@ -70,16 +73,18 @@ export default function Page() {
             description,
             rating,
             image,
-            diningHall
+            diningHall,
+            username
         }));
 
         try {
+
             const response = await fetch(`/api/${diningHall}/${food_name}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title, description, food_name, diningHall, rating }),
+                body: JSON.stringify({ title, description, food_name, diningHall, rating, username }),
             });
 
             if (response.ok) {
@@ -146,24 +151,6 @@ export default function Page() {
                             </span>
                         ))}
                     </div>
-                    <label className="text-white mt-4 block" htmlFor="image">Upload Image</label>
-                    <input
-                        className="w-full p-2 block border-4 border-red-700 rounded-md text-base mb-4 bg-white"
-                        id="image"
-                        type="file"
-                        accept="image/*"
-                        onChange={(event) => {
-                            const file = event.target.files?.[0];
-                            if (file) {
-                                const reader = new FileReader();
-                                reader.onloadend = () => {
-                                    setImage(reader.result as string);
-                                    imageChangeHandler(event);
-                                };
-                                reader.readAsDataURL(file);
-                            }
-                        }}
-                    />
                     <button type="button" className={buttonstyles.button} onClick={handleSubmit}>Submit Review</button>
             </form>
             </div>

@@ -6,9 +6,8 @@ interface Review extends Document {
     food_name: string;
     description?: string;
     rating: number;
-    image?: string;
     updated_date: Date;
-    user_id: string;
+    username: string;
 }
 
 const ReviewSchema = new Schema<Review>({
@@ -31,12 +30,13 @@ const ReviewSchema = new Schema<Review>({
         type: Number,
         required: true
     },
-    image: {
-        type: String
-    },
     updated_date: {
         type: Date,
         default: Date.now
+    },
+    username: {
+        type: String,
+        required: true
     }
 })
 

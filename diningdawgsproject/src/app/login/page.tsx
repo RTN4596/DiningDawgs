@@ -9,7 +9,6 @@ import { signIn } from 'next-auth/react';
 
 
 const LoginPage = () => {
-    console.log("COMES IN HERE")
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
@@ -23,7 +22,6 @@ const LoginPage = () => {
             password,
           });
 
-        console.log(result);
 
         if (result?.error) {
             alert('Invalid username or password');

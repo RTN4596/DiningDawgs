@@ -5,22 +5,25 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";   
 
 interface RouteParams {
-    params: {user_id: string};
+    username: string;
 }
 
-export async function GET(request: NextRequest, { params }: RouteParams) {
-    const { user_id } = params;
+export async function GET(request: NextRequest, context: { params : RouteParams}) {
+    const { params } = context;
+    const { username } = await params;
+
     try {
         await connectMongoDB();
-        const items = await Review.find({user_id});
+        const items = await Review.find({username});
         return NextResponse.json(items);
     } catch (error) {
         return NextResponse.json({ error: 'Failed to fetch user reviews' }, { status: 500 });
     }
 }
 
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
-    const { user_id } = params;
+export async function DELETE(request: NextRequest, context: {params : RouteParams}) {
+    const { params } = context;
+    const { username } =  await params;
 
     if (!request.body) {
         return NextResponse.json({ error: 'Missing food in body' }, { status: 400 });
@@ -30,7 +33,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
 
     try {
         await connectMongoDB();
-        await Review.deleteOne({ user_id, food });
+        await Review.deleteOne({ username, food });
         return NextResponse.json({ message: 'Deleted review' });
     } catch (error) {
         return NextResponse.json({ error: 'Failed to delete review' }, { status: 500 });

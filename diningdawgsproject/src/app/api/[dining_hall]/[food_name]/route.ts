@@ -23,8 +23,8 @@ export async function POST(request: NextRequest, context: {params: RouteParams})
     const { params } = context;
     const { dining_hall, food_name } = await params;
     console.log(dining_hall, food_name);
-    const { title, rating, description, image,  user_id} = await request.json();
+    const { title, rating, description, image,  username} = await request.json();
     await connectMongoDB();
-    const review = await Review.create({title, image, user_id, rating, description, dining_hall, food_name });
+    const review = await Review.create({title, image, username, rating, description, dining_hall, food_name });
     return NextResponse.json(review);
 }

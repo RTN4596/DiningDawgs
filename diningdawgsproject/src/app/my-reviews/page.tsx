@@ -13,7 +13,6 @@ interface Review {
     food_name: string;
     rating: number;
     description: string;
-    imageLink: string;
     dining_hall: string
 }
 
@@ -23,9 +22,9 @@ export default function Home() {
 
     useEffect(() => {
         const fetchReviews = async () => {
-            if (session?.user?.id) {
+            if (session?.user?.name) {
                 try {
-                    const response = await axios.get(`/api/food/reviews/user/${session.user.id}`);
+                    const response = await axios.get(`/api/food/reviews/user/${session.user.name}`);
                     setReviews(response.data);
                 } catch (error) {
                     console.error(error);
@@ -43,7 +42,6 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 justify-items-center">
             {reviews.map((review) => (
                 <div key={review.id} className="bg-gray-300 mt-5 w-80 p-4 shadow-lg shadow-red-500">
-                <Image src={review.imageLink} alt="Picture of related food item" width={100} height={100} />
                 <h3>{review.title} {review.rating} / 5</h3>
                 <p>{review.description}</p>
                 <p>Dining Hall: {review.dining_hall}</p>
