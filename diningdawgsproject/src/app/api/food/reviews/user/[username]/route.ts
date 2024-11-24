@@ -39,3 +39,22 @@ export async function DELETE(request: NextRequest, context: {params : RouteParam
         return NextResponse.json({ error: 'Failed to delete review' }, { status: 500 });
     }
 }
+
+export async function PUT(request: NextRequest, context: {params : RouteParams}) {
+    const { params } = context;
+    const { username } =  await params;
+
+    if (!request.body) {
+        return NextResponse.json({ error: 'Missing food in body' }, { status: 400 });
+    }
+
+    const { food, title, rating, description } = await request.json();
+
+    try {
+        await connectMongoDB();
+        await Review.updateOne({ username, food }, { title, rating, description });
+        return NextResponse.json({ message: 'Updated review' });
+    } catch (error) {
+        return NextResponse.json({ error: 'Failed to update review' }, { status: 500 });
+    }
+}
