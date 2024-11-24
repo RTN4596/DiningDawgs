@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectMongoDB = async () : Promise<void> => {
     try {
-        const uri = process.env.MONGODB_URI;
+        const uri = process.env.MONGODB_URL;
         if (!uri) {
             throw new Error("MONGODB_URL is not defined");
         }
