@@ -8,16 +8,6 @@ import Link from 'next/link';
 
 const LoginPage = () => {
 
-    // FOR LATER
-//   const [isLogged, setIsLogged] = useState(false);
-//     const router = useRouter();
-
-    // FOR LATER
-    //const handleSubmit = (event: FormEvent) => {
-    //     event.preventDefault();
-    //     setIsLogged(true);
-    //     router.push('/authorized');
-    // }
     return (
         <div>
             <BackButton />
