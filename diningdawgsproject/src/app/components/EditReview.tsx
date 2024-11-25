@@ -2,7 +2,7 @@ import styles from "./Button.module.css"
 import { useRouter } from 'next/navigation';
 
 interface EditReviewButtonProps {
-    review_id: number;
+    review_id: string;
 }
 
 export default function EditReviewButton({ review_id }: EditReviewButtonProps) {

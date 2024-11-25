@@ -10,7 +10,7 @@ import DeleteButton from "../components/DeleteButton";
 import EditReviewButton from "../components/EditReview";
 
 interface Review {
-    id: number;
+    review_id: string;
     title: string;
     food_name: string;
     rating: number;
@@ -46,14 +46,14 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 justify-items-center">
             {reviews.map((review) => (
                 <div>
-                <div key={review.id} className="bg-gray-300 mt-5 w-80 p-4 shadow-lg shadow-red-500">
+                <div key={review.review_id} className="bg-gray-300 mt-5 w-80 p-4 shadow-lg shadow-red-500">
                 <h3>{review.title} {review.rating} / 5</h3>
                 <p>{review.description}</p>
                 <p>Dining Hall: {review.dining_hall}</p>
                 </div>
                 <div className="flex justify-center mt-2">
-                <DeleteButton updated_date={review.updated_date} />
-                <EditReviewButton review_id={review.id} />
+                <DeleteButton review_id={review.review_id} />
+                <EditReviewButton review_id={review.review_id} />
                 </div>
                 </div>
             ))}

@@ -12,7 +12,6 @@ interface RouteParams {
 export async function DELETE(request: NextRequest, context: {params : RouteParams}) {
     const { params } = context;
     const { username, review_id } =  await params;
-    const { } = await request.json();
 
     if (!request.body) {
         return NextResponse.json({ error: 'Missing food in body' }, { status: 400 });
