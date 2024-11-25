@@ -1,7 +1,15 @@
 import styles from './Button.module.css';
+import { signOut } from 'next-auth/react';
 
-export default function SignoutButton() {
+const SignoutButton = () => {
+    const handleSignOut = () => {
+        signOut({ callbackUrl: '/login' });
+    };
     return (
-            <button className={styles.button}>Sign Out</button>
+        <button className={styles.button} onClick={handleSignOut}>
+            Sign Out
+        </button>
     );
 }
+
+export default SignoutButton;
