@@ -36,22 +36,26 @@ export default function Page() {
     const router = useRouter();
     const username = session?.user?.name;
     const searchParams = useSearchParams();
+    console.log(searchParams);
     const diningHall = searchParams.get("diningHall") || "default";
-    const food_name = searchParams.get("menuItemId");
+    const food_name = searchParams.get("food_name");
+    console.log("FOOD NAME: "+ food_name);
     const updated_date = searchParams.get("updated_date");
+    const review_id = searchParams.get("review_id");
     const imageSrc = diningHallImages[diningHall as keyof DiningHallData];
 
+    console.log(session?.user?.name);
     const fetchData = async () => {
-        const response = await fetch(`/api/${diningHall}/${food_name}/${updated_date}`, {
+        const response = await fetch(`/api/${diningHall}/${food_name}/${review_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({food_name, diningHall, username, updated_date }),
+            body: JSON.stringify({food_name, diningHall, username, review_id }),
         });
     }
     
-    console.log(fetchData());
+    //console.log(fetchData());
 
 
     const titleChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
