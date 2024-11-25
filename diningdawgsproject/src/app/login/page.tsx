@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../components/Login.module.css';
-import BackButton from "../components/BackButton";
+import BackButtonForLogin from "../components/BackButtonForLogin";
 import { signIn } from 'next-auth/react';
 
 
@@ -33,7 +33,7 @@ const LoginPage = () => {
 
     return (
         <div>
-            <BackButton />
+            <BackButtonForLogin />
             <h1 className={styles.h1}>Login</h1>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <input 
