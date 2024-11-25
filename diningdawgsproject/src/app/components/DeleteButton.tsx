@@ -18,7 +18,7 @@ export default function DeleteButton({ review_id }: DeleteButtonProps) {
             if (session?.user?.name) {
                 const response = await axios.delete(`/api/food/reviews/user/${session.user.name}/${review_id}`);
                 if (response.status === 200) {
-                    router.push('/my-reviews');
+                    router.push('/authorized');
                 } else {
                     console.error('Failed to delete the review');
                 }
