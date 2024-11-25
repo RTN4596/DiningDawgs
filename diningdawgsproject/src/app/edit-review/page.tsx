@@ -104,4 +104,69 @@ export default function Page() {
 
         router.push('/authorized');
     };
+
+    return (
+        <div>
+        <NavbarSignedIn />
+        <BackButton />
+        <div className="flex h-screen">
+            <div className="flex-grow p-4 relative pt-6">
+            
+            
+                <div className="absolute top-0 right-0">
+                <Image className="ml-40 w-1/2 h-auto drop-shadow-[0_4px_6px_rgba(255,255,255,0.6)]"
+                    src="/diningdawgslogo.png"
+                    alt="The logo for Dining Dawgs"
+                    width={400}
+                    height={400}
+                />
+                </div>
+      
+            <form className="ml-1 py-4 w-3/4 mt-64" onSubmit={handleSubmit}>
+                <label className="text-white text-xl" htmlFor="title">Title</label>
+                    <input className="w-3/4 h-10 p-2 block border-4 border-red-700 rounded-md text-base mb-4"
+                        id="title"
+                        type="text"
+                        placeholder="Enter the title of your review"
+                        value={title}
+                        onChange={titleChangeHandler}
+                    />
+                <label className="text-white text-xl" htmlFor="description">Description</label>
+                    <textarea className="w-full h-24 p-2 block border-4 border-red-700 rounded-md text-base"
+                        id="description"
+                        placeholder="Leave your comments here"
+                        value={description}
+                        onChange={descriptionChangeHandler}
+                    />
+                <label className="text-white mt-4 block">Rating</label>
+                    <div className="flex space-x-2">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <span
+                                key={star}
+                                onClick={() => starChangeHandler(star)}
+                                className={`cursor-pointer text-5xl ${
+                                    rating >= star ? "text-yellow-500" : "text-gray-400"
+                                }`}
+                            >
+                                ★
+                            </span>
+                        ))}
+                    </div>
+                    <button type="button" className={buttonstyles.button} onClick={handleSubmit}>Submit Review</button>
+            </form>
+            </div>
+            <div className="relative w-1/4 max-h-screen m-6">
+            <div className="absolute inset-0 -z-10 bg-white rounded-xl shadow-lg scale-105 translate-y-2"></div>
+            <Image
+                src={imageSrc}
+                alt={`${diningHall} image`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg translate-y-2"
+            />
+            </div>
+
+        </div>
+        </div>
+    );
 }
