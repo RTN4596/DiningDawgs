@@ -1,6 +1,8 @@
 import mongoose, {Schema, Document, Model} from "mongoose";
+import { v4 as uuidv4 } from 'uuid';
 
 interface Review extends Document {
+    review_id: string;
     title: string;
     dining_hall: string;
     food_name: string;
@@ -11,6 +13,12 @@ interface Review extends Document {
 }
 
 const ReviewSchema = new Schema<Review>({
+    review_id: {
+        type: String,
+        default: uuidv4,
+        unique: true,
+        required: true
+    },
     title: {
         type: String,
         required: true

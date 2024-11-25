@@ -4,22 +4,21 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 interface DeleteButtonProps {
-    updated_date: Date;
+    review_id: string;
 }
 
-export default function DeleteButton({ updated_date }: DeleteButtonProps) {
+export default function DeleteButton({ review_id }: DeleteButtonProps) {
     
     const router = useRouter();
     const { data: session } = useSession();
-    console.log(updated_date);
     const deleteReview = async () => {
         // This function will delete the review from the
         // database
         try {
             if (session?.user?.name) {
-                const response = await axios.delete(`/api/food/reviews/user/${session.user.name}`, { data: { updated_date } });
+                const response = await axios.delete(`/api/food/reviews/user/${session.user.name}/${review_id}`);
                 if (response.status === 200) {
-                    router.push('/my-reviews');
+                    router.push('/authorized');
                 } else {
                     console.error('Failed to delete the review');
                 }

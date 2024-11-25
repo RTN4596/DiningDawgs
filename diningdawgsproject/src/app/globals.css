@@ -7,6 +7,10 @@
   --foreground: #171717;
 }
 
+nextjs-portal {
+  display: none;
+}
+
 
 body {
   color: var(--foreground);
