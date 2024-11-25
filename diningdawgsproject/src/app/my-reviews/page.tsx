@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import DeleteButton from "../components/DeleteButton";
+import { useRouter } from "next/navigation";
 
 interface Review {
     id: number;
@@ -19,22 +20,26 @@ interface Review {
 }
 
 export default function Home() {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
+    const router = useRouter();
     const [reviews, setReviews] = useState<Review[]>([]);
 
     useEffect(() => {
-        const fetchReviews = async () => {
-            if (session?.user?.name) {
+        if (status === "loading") return;
+        if (!session) {
+            router.push("/login");
+        } else {
+            const fetchReviews = async () => {
                 try {
-                    const response = await axios.get(`/api/food/reviews/user/${session.user.name}`);
+                    const response = await axios.get(`/api/food/reviews/user/${session?.user?.name}`);
                     setReviews(response.data);
                 } catch (error) {
                     console.error(error);
                 }
-            }
-        };
-        fetchReviews();
-    }, [session]);
+            };
+            fetchReviews();
+        }
+    }, [session, status, router]);
 
     
     return (

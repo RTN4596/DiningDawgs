@@ -3,14 +3,16 @@
 import React from 'react';
 import MenuItemButton from '../components/MenuItemButton';
 import NavbarSignedIn from '../components/NavbarSignedIn';
+import Nav from '../components/Nav';
 import { useRouter, useSearchParams } from 'next/navigation';
 import BackButton from '../components/BackButton';
 import Card from '../components/Card';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function MenuItemsPage() {
-
+    const { data: session } = useSession();
     const searchParams = useSearchParams();
     const diningHall = searchParams.get("diningHall") || "default";
 
@@ -73,7 +75,11 @@ export default function MenuItemsPage() {
 
     return (     
         <div>
-            <NavbarSignedIn />
+            {session ? (
+                <NavbarSignedIn />
+            ) : (
+                <Nav />
+            )}
                 <BackButton />
                 <div className='flex items-center justify-between mt-6'>
                 <h1 className="text-5xl mx-auto">Menu Items</h1>

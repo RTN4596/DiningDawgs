@@ -3,8 +3,10 @@ import styles from './Nav.module.css';
 import SignInButton from './SignInButton';
 import Link from 'next/link';
 import Image from "next/image";
+import { useSession } from 'next-auth/react';
 
 export default function Nav() { 
+    const { data: session } = useSession();
     return (
         <nav className={styles.nav}>
             <div className="flex items-center gap-2">

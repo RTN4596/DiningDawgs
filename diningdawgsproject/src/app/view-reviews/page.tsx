@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import NavbarSignedIn from "../components/NavbarSignedIn";
+import Nav from "../components/Nav";
 import BackButton from "../components/BackButton";
+import { useSession } from "next-auth/react";
 
 interface Review {
     id: number;
@@ -35,6 +37,7 @@ const INITIAL_REVIEWS: Review[] = [
 ];
 
 const ViewReviewsPage = () => {
+    const { data: session } = useSession();
     const searchParams = useSearchParams();
     const diningHall = searchParams.get("diningHall");
     const food_name = searchParams.get("menuItemId");
@@ -57,7 +60,11 @@ const ViewReviewsPage = () => {
 
     return (
         <div>
-            <NavbarSignedIn />
+            {session ? (
+                <NavbarSignedIn />
+            ) : (
+                <Nav />
+            )}
             <BackButton />
             <h1 className="text-center text-5xl mt-6">Reviews for Menu Item {food_name}</h1>
             {reviews.length > 0 ? (

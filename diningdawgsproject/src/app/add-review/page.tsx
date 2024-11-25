@@ -1,5 +1,5 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react"
+import { useState, ChangeEvent, FormEvent, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useSession } from "next-auth/react"
 import NavbarSignedIn from "../components/NavbarSignedIn";
@@ -27,7 +27,7 @@ const diningHallImages: DiningHallData = {
 
 
 export default function Page() {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const [title, setTitle] = useState('');
     const [description, setdescription] = useState('');
     const [rating, setRating] = useState(0);
@@ -38,6 +38,13 @@ export default function Page() {
     const diningHall = searchParams.get("diningHall") || "default";
     const food_name = searchParams.get("menuItemId");
     const imageSrc = diningHallImages[diningHall as keyof DiningHallData];
+
+    useEffect(() => {
+        if (status === "loading") return;
+        if (!session) {
+            router.push("/login");
+        }
+    }, [session, status, router]);
 
     console.log(food_name); 
 
@@ -95,6 +102,14 @@ export default function Page() {
 
         router.push('/authorized');
     };
+
+    if (status === "loading" || !session) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div>Loading...</div>
+            </div>
+        );
+    }
 
     return (
         <div>
