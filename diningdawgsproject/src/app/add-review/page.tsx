@@ -8,14 +8,6 @@ import buttonstyles from "../components/Button.module.css";
 import Image from "next/image";
 import axios from "axios";
 
-// May need this later but doesn't do anything right now
-type Review = {
-    title: string;
-    description: string;
-    rating: number;
-    image: string;
-    diningHall: string;
-}
 
 type DiningHallData = {
     bolton: string;
