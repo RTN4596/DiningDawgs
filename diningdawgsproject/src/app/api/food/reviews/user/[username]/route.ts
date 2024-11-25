@@ -6,6 +6,7 @@ import { NextRequest } from "next/server";
 
 interface RouteParams {
     username: string;
+    date: Date;
 }
 
 export async function GET(request: NextRequest, context: { params : RouteParams}) {
@@ -24,16 +25,17 @@ export async function GET(request: NextRequest, context: { params : RouteParams}
 export async function DELETE(request: NextRequest, context: {params : RouteParams}) {
     const { params } = context;
     const { username } =  await params;
+    const { date } = await request.json();
 
     if (!request.body) {
         return NextResponse.json({ error: 'Missing food in body' }, { status: 400 });
     }
 
-    const { food } = await request.json();
+    
 
     try {
         await connectMongoDB();
-        await Review.deleteOne({ username, food });
+        await Review.deleteOne({ username, date });
         return NextResponse.json({ message: 'Deleted review' });
     } catch (error) {
         return NextResponse.json({ error: 'Failed to delete review' }, { status: 500 });
