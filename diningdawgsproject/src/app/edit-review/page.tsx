@@ -1,5 +1,5 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react"
+import { useState, ChangeEvent, FormEvent, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useSession } from "next-auth/react"
 import NavbarSignedIn from "../components/NavbarSignedIn";
@@ -17,45 +17,44 @@ type DiningHallData = {
     niche: string;
 };
 
-const diningHallImages: DiningHallData = {
-    bolton: "/bolton.jpg",
-    villagesummit: "/villagesummit.jpg",
-    oglethorpe: "/ohouse.jpg",
-    snelling: "/snelling.jpg",
-    niche: "/niche.jpg",
-};
-
 
 export default function Page() {
    
     const { data: session } = useSession();
-    const [title, setTitle] = useState('');
-    const [description, setdescription] = useState('');
-    const [rating, setRating] = useState(0);
-    const [image, setImage] = useState('');
     const router = useRouter();
     const username = session?.user?.name;
     const searchParams = useSearchParams();
-    console.log(searchParams);
     const diningHall = searchParams.get("diningHall") || "default";
     const food_name = searchParams.get("food_name");
-    console.log("FOOD NAME: "+ food_name);
     const updated_date = searchParams.get("updated_date");
     const review_id = searchParams.get("review_id");
-    const imageSrc = diningHallImages[diningHall as keyof DiningHallData];
 
-    console.log(session?.user?.name);
-    const fetchData = async () => {
-        const response = await fetch(`/api/${diningHall}/${food_name}/${review_id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({food_name, diningHall, username, review_id }),
-        });
-    }
-    
-    //console.log(fetchData());
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [rating, setRating] = useState(0);
+
+    useEffect(() => {
+        const fetchReview = async () => {
+            if (username && review_id) {
+                try {
+                    const response = await fetch(`/api/food/reviews/user/${username}/${review_id}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    const data = await response.json();
+                    console.log(data);
+                    setTitle(data.title);
+                    setDescription(data.description);
+                    setRating(data.rating);
+                } catch (error) {
+                    console.error("Failed to fetch review:", error);
+                }
+            }
+        };
+        fetchReview();
+    } , [username, review_id]);
 
 
     const titleChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +62,7 @@ export default function Page() {
     }
 
     const descriptionChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setdescription(event.target.value)
+        setDescription(event.target.value)
     }
 
     const starChangeHandler = (value: number) => {
@@ -77,33 +76,27 @@ export default function Page() {
             title,
             description,
             rating,
-            image,
             diningHall,
             username
         }));
 
-        try {
 
-            const response = await fetch(`/api/${diningHall}/${food_name}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ title, description, food_name, diningHall, rating, username }),
-            });
+        const response = await fetch(`/api/food/reviews/user/${username}/${review_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, description, rating}),
+        });
 
-            if (response.ok) {
-                console.log('Review submitted successfully!');
-            } else {
-                const data = await response.json();
-                console.log(data.message || 'Something went wrong. Please try again.');
-            }
-        } catch (err) {
-            console.log('Failed to connect to the server. Please try again later.');
+        if (response.ok) {
+            console.log('Updated');
+        } else {
+            const data = await response.json();
+            console.log("Something went wrong. Did not update.");
         }
-
         setTitle('');
-        setdescription('');
+        setDescription('');
         setRating(0);
 
         router.push('/authorized');
@@ -161,13 +154,6 @@ export default function Page() {
             </div>
             <div className="relative w-1/4 max-h-screen m-6">
             <div className="absolute inset-0 -z-10 bg-white rounded-xl shadow-lg scale-105 translate-y-2"></div>
-            <Image
-                src={imageSrc}
-                alt={`${diningHall} image`}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg translate-y-2"
-            />
             </div>
 
         </div>
