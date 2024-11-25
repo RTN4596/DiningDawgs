@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import DeleteButton from "../components/DeleteButton";
+import EditReviewButton from "../components/EditReview";
 
 interface Review {
     id: number;
@@ -50,7 +51,10 @@ export default function Home() {
                 <p>{review.description}</p>
                 <p>Dining Hall: {review.dining_hall}</p>
                 </div>
+                <div className="flex justify-center mt-2">
                 <DeleteButton updated_date={review.updated_date} />
+                <EditReviewButton review_id={review.id} />
+                </div>
                 </div>
             ))}
             </div>
