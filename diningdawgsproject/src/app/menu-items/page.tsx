@@ -19,7 +19,7 @@ export default function MenuItemsPage() {
     interface MenuItem {
         id: number;
         food_name: string;
-        image: string;
+        imageURL: string;
     }
     
     // const menuItems = {
@@ -87,7 +87,7 @@ export default function MenuItemsPage() {
             </div>
             <div className="grid grid-cols-2 gap-4 mt-6">
                 {menuItems.map(item => (
-                    <Card key={item.id} title={item.food_name} image={item.image}>
+                    <Card key={item.id} title={item.food_name} image={item.imageURL}>
                     </Card>
                 ))}
             </div>
