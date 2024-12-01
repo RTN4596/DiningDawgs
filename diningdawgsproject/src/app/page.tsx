@@ -1,19 +1,18 @@
 "use client";
 
 import Nav from "./components/Nav"; 
+import NavbarSignedIn from "./components/NavbarSignedIn";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Home() {
-
-  const router = useRouter();
-
-  const handleLoginRedirect = () => {
-    router.push('/login');
-  };
+  const { data: session } = useSession();
+  const NavBar = session ? NavbarSignedIn : Nav;
+  
     return (
       <div>
-      <Nav />
+      <NavBar />
       <div className="flex flex-col items-center justify-center h-20">
         <div className="flex items-center gap-2">
           <img src="/fork.png" className="w-20 h-auto drop-shadow-[0_4px_6px_rgba(255,255,255,0.6)] translate-y-2" alt="Fork" />

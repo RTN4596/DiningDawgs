@@ -25,7 +25,7 @@ const SignupPage = () => {
             });
 
             if (response.ok) {
-                router.push('/authorized');
+                router.push('/');
             } else {
                 const data = await response.json();
                 console.log(data.message || 'Something went wrong. Please try again.');

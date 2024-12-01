@@ -27,7 +27,7 @@ const LoginPage = () => {
             alert('Invalid username or password');
         } else {
             console.log('Logged in');
-            router.push('/authorized');
+            router.push('/');
         }
     };
 

@@ -99,7 +99,7 @@ export default function Page() {
         setDescription('');
         setRating(0);
 
-        router.push('/authorized');
+        router.push('/');
     };
 
     return (
