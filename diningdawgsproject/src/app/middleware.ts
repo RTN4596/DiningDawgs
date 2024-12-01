@@ -24,5 +24,6 @@ export const config = {
     matcher: [
         "/add-review/:path*",
         "/my-reviews/",
+        "/authorized/"
     ]
 };

@@ -2,12 +2,24 @@
 
 import Image from "next/image";
 import NavbarSignedIn from "../components/NavbarSignedIn";
-import { useState } from "react";
+import { useState,  useEffect } from "react";
+import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (status === "loading") return;
+    if (!session) {
+        router.push("/login");
+    }
+  }, [session, status, router]);
+  
     return (
+      
         <div>
           <NavbarSignedIn />
           <div className="flex flex-col items-center justify-center h-20">
